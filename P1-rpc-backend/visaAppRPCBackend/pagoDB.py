@@ -9,6 +9,7 @@ from visaAppRPCBackend.models import Tarjeta, Pago
 from modernrpc.core import rpc_method
 from django.forms.models import model_to_dict
 
+
 @rpc_method
 def verificar_tarjeta(tarjeta_data):
     """ Check if the tarjeta is registered 
@@ -20,6 +21,7 @@ def verificar_tarjeta(tarjeta_data):
        Tarjeta.objects.filter(**tarjeta_data).exists():
         return False
     return True
+
 
 @rpc_method
 def registrar_pago(pago_dict):
@@ -40,6 +42,7 @@ def registrar_pago(pago_dict):
     pago_a_devolver['marcaTiempo'] = str(pago.marcaTiempo)
     return pago_a_devolver
 
+
 @rpc_method
 def eliminar_pago(idPago):
     """ Delete a pago in the database
@@ -53,6 +56,7 @@ def eliminar_pago(idPago):
         return False
     pago.delete()
     return True
+
 
 @rpc_method
 def get_pagos_from_db(idComercio):
